@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+</head>
+<body>
+<h2>
+    <a href="/login">Login</a>
+</h2>
+<form th:action="@{/reg}" th:object="${user}" method="post">
+
+    Name :
+    <label>
+        <input type="text" th:field="*{name}" placeholder="Name"/>
+    </label>
+    <br/>
+
+    Password :
+    <label>
+        <input type="text" th:field="*{password}" placeholder="Password">
+    </label>
+    <br/>
+
+    SurName :
+    <label>
+        <input type="text" th:field="*{surName}" placeholder="SurName">
+    </label>
+    <br/>
+
+    Email :
+    <input type="text" th:field="*{email}" placeholder="Email">
+    <br/>
+
+    <input type="hidden" name="role" value="ROLE_USER">
+    <br/>
+    <input type="submit" value="Submit">
+
+
+</form>
+</body>
+</html>

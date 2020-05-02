@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User update</title>
+</head>
+<body>
+<h2>
+    <a href="/admin/userList">User List</a>
+</h2>
+<form th:action="@{/admin/save}" th:object="${user}" method="post">
+    <table border="1" cellpadding="5">
+        <h2>Обновить данные</h2>
+
+            <input type="hidden" name="id" th:value="${user.id}"/>
+        <tr>
+            <th>Name:</th>
+            <td><label>
+                <input type="text" name="name" th:value="${user.name}">
+            </label></td>
+        </tr>
+        <tr>
+            <th>Password:</th>
+            <td><label>
+                <input type="text" name="password" th:value="${user.password}">
+            </label></td>
+        </tr>
+        <tr>
+            <th>SurName:</th>
+            <td><label>
+                <input type="text" name="surName" th:value="${user.surName}">
+            </label></td>
+        </tr>
+        <tr>
+            <th>Email:</th>
+            <td><label>
+                <input type="text" name="email" th:value="${user.email}">
+            </label></td>
+        </tr>
+        <tr>
+            <th>Role:</th>
+            <td>
+                <label>
+                    <select name="role" multiple>
+                        <th:block th:each="role : ${roleList}">
+                            <option th:value="${role.id}" th:text=${role.name}></option>
+                        </th:block>
+                    </select>
+                </label>
+            </td>
+        </tr>
+    </table>
+    <input type="submit" value="Save"/>
+</form>
+<form action="/logout"  method="post">
+    <input type="submit" value="Выйти"/>
+</form>
+</body>
+</html>

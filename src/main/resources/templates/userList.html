@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User List</title>
+</head>
+<body>
+<h2>
+    <a href="/admin/addUser">Add New User</a>
+</h2>
+<table border="1" cellpadding="5">
+    <h2>
+        Список людей
+    </h2>
+
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Password</th>
+        <th>SurName</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="user : ${list}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.password}"></td>
+        <td th:text="${user.surName}"></td>
+        <td th:text="${user.email}"></td>
+        <td>
+            <label th:each="role : ${user.roles}">
+                <label th:text="${role.name}"></label>
+            </label>
+        </td>
+        <td><a th:href="@{updateUser/{id}(id=${user.id})}">Update</a>
+            <a th:href="@{deleteUser/{id}(id=${user.id})}">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+
+</table>
+<form action="/logout"  method="post">
+    <input type="submit" value="Выйти"/>
+</form>
+</body>
+</html>
